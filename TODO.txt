@@ -1,0 +1,3 @@
+Создать seed, Configs for entities, DbInitialiser(UninstallDbMigration)
+Переименовать название бд в строке подключения
+*Надумать чет с DI/контейнерами
