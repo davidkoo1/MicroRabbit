@@ -1,4 +1,7 @@
-﻿using MicroRabbit.Banking.Application.Interfaces;
+﻿using MediatR;
+using MicroRabbit.Banking.Application.Commands;
+using MicroRabbit.Banking.Application.Commands.CreateTransfer;
+using MicroRabbit.Banking.Application.Interfaces;
 using MicroRabbit.Banking.Infrastructure.Persistance;
 using MicroRabbit.Banking.Infrastructure.Repository;
 using MicroRabbit.Domain.Core.Bus;
@@ -22,6 +25,9 @@ namespace MicroRabbit.Infra.IoC
             //Application Services
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
+
+            //Domain Banking Commands
+            services.AddTransient<IRequestHandler<CreateTransferCommand, bool>, TransferCommandHeandler>();
 
             ////Data
             //services.AddTransient<IAccountRepository, AccountRepository>();
