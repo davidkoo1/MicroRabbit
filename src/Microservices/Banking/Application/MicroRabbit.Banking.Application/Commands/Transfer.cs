@@ -13,12 +13,12 @@ namespace MicroRabbit.Banking.Application.Commands
         public decimal Amount { get; set; }
     }
 
-    public class TransferCommandHeandler : IRequestHandler<CreateTransferCommand, bool>
+    public class TransferCommandHandler : IRequestHandler<CreateTransferCommand, bool>
     {
 
         private readonly IEventBus _eventBus;
 
-        public TransferCommandHeandler(IEventBus eventBus)
+        public TransferCommandHandler(IEventBus eventBus)
         {
             _eventBus = eventBus;
         }

@@ -13,6 +13,15 @@ namespace MicroRabbit.Transfer.Data.Repository
         {
             _dbContext = dbContext;
         }
+
+        public async Task<bool> Add(TransferLog entity)
+        {
+            _dbContext.TransferLogs.Add(entity);
+            return await Save();
+        }
+
         public async Task<IEnumerable<TransferLog>> GetAllGetTransferLogsAsync() => await _dbContext.TransferLogs.ToListAsync();
+
+        public async Task<bool> Save() => await _dbContext.SaveChangesAsync() > 0;
     }
 }

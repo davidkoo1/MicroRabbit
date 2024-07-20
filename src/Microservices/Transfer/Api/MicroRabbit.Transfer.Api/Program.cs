@@ -1,19 +1,31 @@
 using MicroRabbit.Domain.Core.Bus;
 using MicroRabbit.Infra.IoC;
-using MicroRabbit.Transfer.Application.Events;
 using MicroRabbit.Transfer.Application.Interfaces;
 using MicroRabbit.Transfer.Application.Services;
 using MicroRabbit.Transfer.Data;
 using MicroRabbit.Transfer.Data.Context;
 using MicroRabbit.Transfer.Data.Repository;
 using MicroRabbit.Transfer.Domain.EventHandlers;
+using MicroRabbit.Transfer.Domain.Events;
 using MicroRabbit.Transfer.Domain.Interfaces;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.RegisterServices();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.RegisterServices();
+//Subscriptions
+builder.Services.AddTransient<TransferEventHandler>();
+
+//Domain Events
+builder.Services.AddTransient<IEventHandler<TransferCreatedEvent>, TransferEventHandler>();
+//Application Services
+builder.Services.AddTransient<ITransferService, TransferService>();
+
+//Data
+builder.Services.AddTransient<ITransferRepository, TransferRepository>();
+builder.Services.AddTransient<TransferDbContext>();
+
 //Application Transfer Services
 builder.Services.AddTransient<ITransferService, TransferService>();
 

@@ -1,24 +1,29 @@
 ﻿using MicroRabbit.Domain.Core.Bus;
-using MicroRabbit.Transfer.Application.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using MicroRabbit.Transfer.Domain.Events;
+using MicroRabbit.Transfer.Domain.Interfaces;
+using MicroRabbit.Transfer.Domain.Models;
 
 namespace MicroRabbit.Transfer.Domain.EventHandlers
 {
     public class TransferEventHandler : IEventHandler<TransferCreatedEvent>
     {
-
-        public TransferEventHandler()
+        private readonly ITransferRepository _transferRepository;
+        public TransferEventHandler(ITransferRepository transferRepository)
         {
-            
+            _transferRepository = transferRepository;
         }
 
-        public Task Handle(TransferCreatedEvent @event)
+        public async Task Handle(TransferCreatedEvent @event)
         {
-            return Task.CompletedTask;
+            await _transferRepository.Add(new TransferLog
+            {
+                FromAccountId = @event.From,
+                ToAccountId = @event.To,
+                TransferAmount = @event.Amount
+            });
+
+            //return Task.CompletedTask;
         }
+
     }
 }
