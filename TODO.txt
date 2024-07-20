@@ -1,2 +1,26 @@
-Создать seed, Configs for entities, DbInitialiser(UninstallDbMigration)
+Создать seed, Configs for entities, DbInitialiser(Restore/UninstallDbMigration)
 *Надумать чет с DI/контейнерами(С БД есть свой di, кторый будет в программ файле оттедльно писаться)
+
+
+.editorConfig
+*Docker
+
+Просмотреть похожие примеры
+Продумать детально над функцинальностью моделями и что будет использованно
+Написать Readme, Specification, И как все работает
+
+-EDA
+Gateway
+DI Transfer
+UseHowInISCompany
+Auth -> IdentityService
+Transaction history + Detail (*MongoDb)
+Validation(if user in db)
+
+
+
+Angular client
+*Maui mobile
+
+* - то что на потом
+- - то что уже есть, но стоит заострить внимание
