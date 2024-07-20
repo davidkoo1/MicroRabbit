@@ -8,7 +8,7 @@ namespace MicroRabbit.Transfer.Data.Context
         public TransferDbContext(DbContextOptions<TransferDbContext> options) : base(options)
         {
         }
-        DbSet<TransferLog> TransferLogs { get; set; }
+        public DbSet<TransferLog> TransferLogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
