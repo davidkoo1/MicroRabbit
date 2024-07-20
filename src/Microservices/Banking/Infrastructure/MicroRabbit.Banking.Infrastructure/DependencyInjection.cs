@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MicroRabbit.Infra.IoC.DIs
+namespace MicroRabbit.Banking.Infrastructure
 {
-    public static class InfrastructureDependencyInjection
+    public static class DependencyInjection
     {
-        public static IServiceCollection AddInfrastructure(IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<BankingDbContext>(options =>
             {

@@ -2,18 +2,13 @@
 using MicroRabbit.Banking.Infrastructure.Persistance;
 using MicroRabbit.Domain.Core.Bus;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MicroRabbit.Banking.Infrastructure.Repository
 {
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private readonly BankingDbContext _dbContext;
-        
+
         public IAccountRepository Accounts { get; }
         private readonly IEventBus _eventBus;
 

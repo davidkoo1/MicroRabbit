@@ -2,11 +2,6 @@
 using MicroRabbit.Banking.Infrastructure.Persistance;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MicroRabbit.Banking.Infrastructure.Repository
 {
@@ -34,7 +29,7 @@ namespace MicroRabbit.Banking.Infrastructure.Repository
         {
             var entity = await _dbSet.FindAsync(id);
 
-            if(entity == null) return false;
+            if (entity == null) return false;
 
             _dbSet.Remove(entity);
             return await Save();

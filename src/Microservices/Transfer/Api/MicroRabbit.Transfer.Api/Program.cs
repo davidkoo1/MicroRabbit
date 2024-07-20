@@ -1,9 +1,36 @@
+using MicroRabbit.Infra.IoC;
+using MicroRabbit.Transfer.Data;
+using Microsoft.OpenApi.Models;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.RegisterServices();
+builder.Services.AddInfrastructure(builder.Configuration);
+
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Transfer Microservice",
+        Version = "v1",
+        Description = "A Transfer Microservice ASP.NET Core Web API",
+        //TermsOfService = new Uri("https://example.com/terms"),
+        //Contact = new OpenApiContact
+        //{
+        //    Name = "Example Contact",
+        //    Url = new Uri("https://example.com/contact")
+        //},
+        //License = new OpenApiLicense
+        //{
+        //    Name = "Example License",
+        //    Url = new Uri("https://example.com/license")
+        //}
+    });
+});
+
 
 var app = builder.Build();
 
@@ -15,30 +42,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.MapControllers();
 
-var summaries = new[]
+app.UseSwaggerUI(c =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Transfer Microservice V1");
+});
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

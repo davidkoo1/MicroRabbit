@@ -1,11 +1,12 @@
+using MicroRabbit.Banking.Infrastructure;
 using MicroRabbit.Infra.IoC;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Services.RegisterServices(builder.Configuration);
-
+builder.Services.RegisterServices();
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>

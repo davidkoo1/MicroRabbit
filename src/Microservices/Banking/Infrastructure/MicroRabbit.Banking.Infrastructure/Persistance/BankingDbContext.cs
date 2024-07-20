@@ -6,7 +6,7 @@ namespace MicroRabbit.Banking.Infrastructure.Persistance
     public class BankingDbContext : DbContext
     {
 
-        public BankingDbContext(DbContextOptions options) : base(options) { }
+        public BankingDbContext(DbContextOptions<BankingDbContext> options) : base(options) { }
 
         public DbSet<Account> Accounts { get; set; }
 

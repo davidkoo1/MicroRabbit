@@ -2,26 +2,24 @@
 
 #nullable disable
 
-namespace MicroRabbit.Banking.Infrastructure.Migrations
+namespace MicroRabbit.Transfer.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class InitialTransferDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Accounts",
+                name: "TransferLogs",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    AccountType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AccountBalance = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Accounts", x => x.Id);
+                    table.PrimaryKey("PK_TransferLogs", x => x.Id);
                 });
         }
 
@@ -29,7 +27,7 @@ namespace MicroRabbit.Banking.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Accounts");
+                name: "TransferLogs");
         }
     }
 }
