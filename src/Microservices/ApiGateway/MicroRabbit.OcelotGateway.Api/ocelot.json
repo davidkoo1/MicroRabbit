@@ -1,0 +1,43 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:5150"
+  },
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/gateway/Banking",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Banking",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7265
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Banking",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/Banking",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7265
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Transfer",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Transfer",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7277
+        }
+      ]
+    }
+  ]
+}
