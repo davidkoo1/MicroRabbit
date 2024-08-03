@@ -10,7 +10,7 @@
 Написать Readme, Specification, И как все работает
 
 -EDA
-Gateway
+-Gateway Ocelot in Use
 DI Transfer
 UseHowInISCompany
 Auth -> IdentityService
